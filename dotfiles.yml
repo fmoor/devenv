@@ -1,0 +1,47 @@
+---
+- name: checkout dotfiles
+  git:
+    repo: git@github.com:fmoor/dotfiles.git
+    dest: ~/src/dotfiles
+
+- name: link .bashrc
+  file:
+    state: link
+    src: ~/src/dotfiles/bashrc
+    path: ~/.bashrc
+    force: yes
+
+- name: link .bash_aliases
+  file:
+    state: link
+    src: ~/src/dotfiles/bash_aliases
+    path: ~/.bash_aliases
+
+- name: link .bash_variables
+  file:
+    state: link
+    src: ~/src/dotfiles/bash_variables
+    path: ~/.bash_variables
+
+- name: link .gitconfig
+  file:
+    state: link
+    src: ~/src/dotfiles/gitconfig
+    path: ~/.gitconfig
+
+- name: link .gitignore_global
+  file:
+    state: link
+    src: ~/src/dotfiles/gitignore_global
+    path: ~/.gitignore_global
+
+- name: create ~/.local/bin directory
+  file:
+    state: directory
+    path: ~/.local/bin
+
+- name: link auto-activate-virtualenv.sh
+  file:
+    state: link
+    src: ~/src/dotfiles/bin/auto-activate-virtualenv.sh
+    path: ~/.local/bin/auto-activate-virtualenv.sh

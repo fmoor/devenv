@@ -1,0 +1,17 @@
+---
+- name: pycharm_string
+  set_fact:
+    pycharm_string: "{{ 'pycharm-' +  pycharm_edition + '-' + pycharm_version }}"
+
+- name: install pycharm
+  unarchive:
+    src: https://download.jetbrains.com/python/{{ pycharm_string }}.tar.gz
+    remote_src: yes
+    dest: /opt/
+  become: yes
+
+- name: register pycharm with gnome
+  template:
+    src: pycharm.desktop
+    dest: /usr/share/applications/jetbrains-pycharm-ce.desktop
+  become: yes

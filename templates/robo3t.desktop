@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version={{ robo3t_version }}
+Type=Application
+Name=Robo 3T (Robomongo)
+Icon=/opt/{{ install_name }}/robo3t.png
+Exec="/opt/{{ install_name }}/bin/robo3t" %f
+Comment=MongoDB browser
+Categories=Development;
+Terminal=false
+StartupWMClass=robomongo

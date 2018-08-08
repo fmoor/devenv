@@ -1,0 +1,22 @@
+---
+- name: add deadsnakes ppa  # has latest versions of python
+  apt_repository:
+    repo: "ppa:deadsnakes/ppa"
+  become: yes
+  tags: apt
+
+- name: apt full upgrade
+  apt:
+    upgrade: dist
+    update_cache: yes
+  become: yes
+  tags: apt
+
+- name: apt install
+  apt:
+    name: "g++,libffi-dev,libssl-dev,\
+           python-dev,\
+           python3.6,python3.6-dev,python3.6-venv,\
+           python3.7,python3.7-dev,python3.7-venv,\
+           nano,git,ffmpeg,direnv"
+  become: yes

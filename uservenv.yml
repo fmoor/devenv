@@ -1,0 +1,8 @@
+---
+- name: create virtualenv
+  command: python3.7 -m venv ~/.venv
+
+- name: create venv
+  pip:
+    name: youtube-dl,ipython
+    virtualenv: ~/.venv

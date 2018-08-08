@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PyCharm {{ pycharm_edition | title }} Edition
+Icon=/opt/{{ pycharm_string }}/bin/pycharm.png
+Exec="/opt/{{ pycharm_string }}/bin/pycharm.sh" %f
+Comment=The Drive to Develop
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-pycharm-ce
