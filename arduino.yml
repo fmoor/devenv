@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+
+  vars:
+    arduino_version: 1.8.9
+
+  tasks:
+  - name: add user to dialout group
+    become: yes
+    user:
+      name: fmoor
+      groups:
+      - dialout
+      append: yes
+      create_home: no
+
+  - name: download arduino IDE
+    get_url:
+      url: "https://downloads.arduino.cc/arduino-{{ arduino_version }}-linux64.tar.xz"
+      dest: "~/Downloads/arduino-{{ arduino_version }}-linux64.tar.xz"
+
+  - name: install arduino IDE
+    become: yes
+    unarchive:
+      src: "/home/fmoor/Downloads/arduino-{{ arduino_version }}-linux64.tar.xz"
+      dest: /opt
+      creates: "/opt/arduino-{{ arduino_version }}/arduino"
+      copy: no
+
+  - name: register arduino IDE with gnome
+    become: yes
+    template:
+      src: arduino.desktop
+      dest: /usr/share/applications/arduino.desktop

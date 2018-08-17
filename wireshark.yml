@@ -1,0 +1,32 @@
+---
+- name: install wireshark
+  hosts: localhost
+
+  tasks:
+    - name: add wireshark repository
+      become: true
+      apt_repository:
+        repo: ppa:wireshark-dev/stable
+        update_cache: false
+
+    - name: install wireshark
+      become: true
+      apt:
+        update_cache: true
+        state: latest
+        package: wireshark
+
+    - name: allow non root capture
+      become: true
+      debconf:
+        name: wireshark-common
+        question: wireshark-common/install-setuid
+        value: 'true'
+        vtype: select
+
+    - name: add fmoor to wireshark group
+      become: true
+      user:
+        name: fmoor
+        append: true
+        groups: wireshark

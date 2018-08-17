@@ -1,0 +1,17 @@
+---
+# http://www.maartenbaert.be/simplescreenrecorder/
+- hosts: localhost
+
+  tasks:
+  - name: add simplescreenrecorder ppa
+    become: true
+    apt_repository:
+      repo: "ppa:maarten-baert/simplescreenrecorder"
+
+  - name: install simplescreenrecorder
+    become: true
+    apt:
+      cache_valid_time: 3600
+      packages:
+        - simplescreenrecorder
+        - simplescreenrecorder-lib:i386

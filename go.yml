@@ -1,0 +1,13 @@
+---
+- name: install golang
+  hosts: localhost
+
+  tasks:
+    - name: install golang
+      become: true
+      unarchive:
+        remote_src: true
+        src: https://golang.org/dl/go1.15.2.linux-amd64.tar.gz
+        dest: /usr/local
+      args:
+        creates: /usr/local/go

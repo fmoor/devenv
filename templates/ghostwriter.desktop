@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=ghostwriter
+GenericName=Text Editor
+Comment=A distraction-free Markdown editor for Windows and Linux
+Icon=accessories-text-editor
+Exec=ghostwriter
+Type=Application
+Categories=Utility;TextEditor;
+Terminal=false

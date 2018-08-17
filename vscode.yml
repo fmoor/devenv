@@ -1,0 +1,25 @@
+# $ ansible-playbook -K vscode.yml
+---
+- hosts: localhost
+
+  roles:
+  - role: gantsign.visual-studio-code
+    users:
+      - username: fmoor
+        visual_studio_code_extensions:
+          - dbaeumer.vscode-eslint
+          - ms-python.python
+          - rust-lang.rust
+          - flowtype.flow-for-vscode
+          - eamodio.gitlens
+          - vscoss.vscode-ansible
+        visual_studio_code_settings: {
+          "editor.lineNumbers": "off",
+          "editor.minimap.enabled": false,
+          "telemetry.enableTelemetry": false,
+          "gitlens.currentLine.enabled": false,
+          "gitlens.hovers.currentLine.over": "line",
+          "gitlens.codeLens.enabled": false,
+          "gitlens.hovers.currentLine.enabled": false,
+          "workbench.tree.indent": 16
+        }

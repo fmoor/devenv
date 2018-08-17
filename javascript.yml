@@ -1,0 +1,18 @@
+# $ ansible-playbook nvm.yml
+# https://github.com/creationix/nvm
+---
+- hosts: localhost
+
+  tasks:
+  - name: install nvm
+    git:
+      repo: "https://github.com/creationix/nvm.git"
+      dest: ~/.nvm
+
+  - name: install latest node.js and npm
+    shell: source ~/.nvm/nvm.sh && nvm install --lts --latest-npm
+    args:
+      executable: /bin/bash
+
+  - debug:
+      msg: restart your terminal to use nvm

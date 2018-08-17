@@ -1,0 +1,25 @@
+# $ ansible-playbook -K insomnia.yml
+# refference: https://support.insomnia.rest/article/23-installation#ubuntu
+
+---
+- hosts: localhost
+
+  tasks:
+  - name: add repository
+    become: true
+    apt_repository:
+      repo: "deb https://dl.bintray.com/getinsomnia/Insomnia /"
+      state: present
+
+  - name: add public key
+    become: true
+    apt_key:
+      url: https://insomnia.rest/keys/debian-public.key.asc
+      state: present
+
+  - name: install insomnia
+    become: true
+    apt:
+      name: insomnia
+      state: latest
+      cache_valid_time: 3600

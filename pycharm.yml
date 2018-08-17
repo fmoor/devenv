@@ -1,17 +1,21 @@
+# $ ansible-playbook -K pycharm.yml
+
 ---
-- name: pycharm_string
-  set_fact:
-    pycharm_string: "{{ 'pycharm-' +  pycharm_edition + '-' + pycharm_version }}"
+- hosts: localhost
 
-- name: install pycharm
-  unarchive:
-    src: https://download.jetbrains.com/python/{{ pycharm_string }}.tar.gz
-    remote_src: yes
-    dest: /opt/
-  become: yes
+  vars:
+    pycharm_version: "2018.3.4"
 
-- name: register pycharm with gnome
-  template:
-    src: pycharm.desktop
-    dest: /usr/share/applications/jetbrains-pycharm-ce.desktop
-  become: yes
+  tasks:
+    - name: install pycharm
+      unarchive:
+        src: https://download.jetbrains.com/python/pycharm-community-{{ pycharm_version }}.tar.gz
+        remote_src: true
+        dest: /opt/
+      become: true
+
+    - name: register pycharm with gnome
+      template:
+        src: pycharm.desktop
+        dest: /usr/share/applications/jetbrains-pycharm-ce.desktop
+      become: true

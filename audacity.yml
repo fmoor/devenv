@@ -1,0 +1,11 @@
+---
+- name: install audacity
+  hosts: localhost
+
+  tasks:
+    - name: install audacity
+      become: true
+      apt:
+        cache_valid_time: 3600
+        state: latest
+        package: audacity

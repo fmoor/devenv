@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=arduino IDE
+Icon=/opt/arduino-{{ arduino_version}}/lib/icons/256x256/apps/arduino.png
+Exec="/opt/arduino-{{ arduino_version}}/arduino" %f
+Categories=Development;IDE;
+Terminal=false

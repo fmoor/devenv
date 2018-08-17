@@ -1,0 +1,38 @@
+---
+- name: configure GNOME
+  hosts: localhost
+
+  tasks:
+    - name: hide GNOME dock
+      command: gnome-extensions disable ubuntu-dock@ubuntu.com
+
+    - name: remove background image
+      command: gsettings set org.gnome.desktop.background picture-uri ""
+
+    - name: set background color
+      command: gsettings set org.gnome.desktop.background primary-color '#000000'
+
+    - name: set background shading
+      command: gsettings set org.gnome.desktop.background color-shading-type 'solid'
+
+    - name: set dark theme
+      command: gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+
+    - name: remove trash icon from desktop
+      command: gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
+
+    - name: remove home directory icon from desktop
+      command: gsettings set org.gnome.shell.extensions.desktop-icons show-home false
+
+    - name: set gtk clock format to 12 hour (am/pm)
+      command: gsettings set org.gtk.Settings.FileChooser clock-format '12h'
+
+    - name: set desktop clock format to 12 hour (am/pm)
+      command: gsettings set org.gnome.desktop.interface clock-format '12h'
+
+    # https://frantzroulet.com/blog/other/2018/12/26/how-to-choose-alacritty-as-default-terminal.html
+    - name: make alacritty the default terminal emulator
+      become: true
+      community.general.alternatives:
+        name: x-terminal-emulator
+        path: /usr/bin/alacritty

@@ -1,0 +1,12 @@
+# ansible-playbook -K boostnote.yml
+---
+- hosts: localhost
+
+  vars:
+    boostnote_version: "0.11.15"
+
+  tasks:
+  - name: install boostnote
+    become: yes
+    apt:
+      deb: "https://github.com/BoostIO/boost-releases/releases/download/v{{ boostnote_version }}/boostnote_{{ boostnote_version }}_amd64.deb"

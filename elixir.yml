@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: download deb
+    get_url:
+      url: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+      dest: /tmp/erlang-solutions_1.0_all.deb
+
+  - name: install deb
+    become: yes
+    command: "dpkg -i /tmp/erlang-solutions_1.0_all.deb"
+
+  - name: Install Erlang/OTP platform
+    become: yes
+    apt:
+      name: esl-erlang
+      state: latest
+      cache_valid_time: 3600
+
+  - name: Install Elixir
+    become: yes
+    apt:
+      name: elixir
+      state: latest
+      cache_valid_time: 3600
+
+  - name: install hex
+    command: mix local.hex
