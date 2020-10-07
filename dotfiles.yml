@@ -78,6 +78,12 @@
         src: ~/src/dotfiles/gitignore_global
         path: ~/.gitignore_global
 
+    - name: link user mypy.ini
+      file:
+        state: link
+        src: ~/src/dotfiles/mypy.ini
+        path: ~/.mypy.ini
+
     - name: link firefox config
       file:
         state: link
