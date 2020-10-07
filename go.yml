@@ -11,3 +11,10 @@
         dest: /usr/local
       args:
         creates: /usr/local/go
+
+    - name: install go tools
+      command: go get -u golang.org/x/tools/...
+      environment:
+        GOPATH: /home/fmoor/.go
+      args:
+        creates: ~/.go/src/golang.org/x/tools
