@@ -40,7 +40,7 @@
         state: latest
         package:
           - git
-          - vim
+          - vim-gtk  # gtk required to use clipboard
           - jq
           - htop
           - curl
