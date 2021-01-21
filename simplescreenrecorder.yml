@@ -12,6 +12,6 @@
     become: true
     apt:
       cache_valid_time: 3600
-      packages:
+      pkg:
         - simplescreenrecorder
-        - simplescreenrecorder-lib:i386
+        - simplescreenrecorder-lib
