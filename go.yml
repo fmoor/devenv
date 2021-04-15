@@ -4,9 +4,9 @@
 
   tasks:
     - name: install golang
-      become: true
+      become: yes
       unarchive:
-        remote_src: true
+        remote_src: yes
         src: https://golang.org/dl/go1.15.2.linux-amd64.tar.gz
         dest: /usr/local
       args:

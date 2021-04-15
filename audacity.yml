@@ -4,7 +4,7 @@
 
   tasks:
     - name: install audacity
-      become: true
+      become: yes
       apt:
         cache_valid_time: 3600
         state: latest

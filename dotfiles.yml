@@ -10,13 +10,18 @@
           # aliased in bashrc
           - youtube-dl
 
-          # used by vim plugin maralla/completor.vim
-          - jedi
+          - python-language-server[all]
+          - pyls-mypy
 
           # used by vim plugin dense-analysis/ale
           - yamllint
           - flake8
           - mypy
+
+    - name: install svelte language server
+      community.general.npm:
+        name: svelte-language-server
+        global: yes
 
     - name: install git prompt script
       get_url:
@@ -35,7 +40,7 @@
         state: link
         src: ~/src/dotfiles/bashrc
         path: ~/.bashrc
-        force: true
+        force: yes
 
     # https://github.com/alacritty/alacritty#configuration
     - name: link alacritty.yml
@@ -54,17 +59,24 @@
         state: link
         src: ~/src/dotfiles/tmux
         path: ~/.byobu/.tmux.conf
-        force: true
+        force: yes
+
+    - name: link neovim config
+      file:
+        state: link
+        src: ~/src/dotfiles/nvim
+        path: ~/.config/nvim
+        force: yes
 
     - name: link .vimrc
       file:
         state: link
         src: ~/src/dotfiles/vimrc
         path: ~/.vimrc
-        force: true
+        force: yes
 
-    - name: install vim pulgins
-      command: vim +'PlugInstall --sycn' +qa
+    - name: install neovim pulgins
+      command: nvim +'PlugInstall --sycn' +qa
 
     - name: link .gitconfig
       file:

@@ -4,17 +4,17 @@
 
   tasks:
     - name: add edgedb apt key
-      become: true
+      become: yes
       apt_key:
         url: https://packages.edgedb.com/keys/edgedb.asc
 
     - name: add edgedb repo
-      become: true
+      become: yes
       apt_repository:
         repo: "deb https://packages.edgedb.com/apt {{ ansible_distribution_release }}.nightly main"
 
     - name: install edgedb package
-      become: true
+      become: yes
       apt:
         package: edgedb-1-alpha4
-        update_cache: true
+        update_cache: yes

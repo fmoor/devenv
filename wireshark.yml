@@ -4,20 +4,20 @@
 
   tasks:
     - name: add wireshark repository
-      become: true
+      become: yes
       apt_repository:
         repo: ppa:wireshark-dev/stable
         update_cache: false
 
     - name: install wireshark
-      become: true
+      become: yes
       apt:
-        update_cache: true
+        update_cache: yes
         state: latest
         package: wireshark
 
     - name: allow non root capture
-      become: true
+      become: yes
       debconf:
         name: wireshark-common
         question: wireshark-common/install-setuid
@@ -25,8 +25,8 @@
         vtype: select
 
     - name: add fmoor to wireshark group
-      become: true
+      become: yes
       user:
         name: fmoor
-        append: true
+        append: yes
         groups: wireshark

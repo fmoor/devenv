@@ -6,19 +6,19 @@
 
   tasks:
   - name: add repository
-    become: true
+    become: yes
     apt_repository:
       repo: "deb https://dl.bintray.com/getinsomnia/Insomnia /"
       state: present
 
   - name: add public key
-    become: true
+    become: yes
     apt_key:
       url: https://insomnia.rest/keys/debian-public.key.asc
       state: present
 
   - name: install insomnia
-    become: true
+    become: yes
     apt:
       name: insomnia
       state: latest

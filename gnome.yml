@@ -32,7 +32,7 @@
 
     # https://frantzroulet.com/blog/other/2018/12/26/how-to-choose-alacritty-as-default-terminal.html
     - name: make alacritty the default terminal emulator
-      become: true
+      become: yes
       community.general.alternatives:
         name: x-terminal-emulator
         path: /usr/bin/alacritty

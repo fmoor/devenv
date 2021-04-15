@@ -4,12 +4,12 @@
 
   tasks:
   - name: add simplescreenrecorder ppa
-    become: true
+    become: yes
     apt_repository:
       repo: "ppa:maarten-baert/simplescreenrecorder"
 
   - name: install simplescreenrecorder
-    become: true
+    become: yes
     apt:
       cache_valid_time: 3600
       pkg:

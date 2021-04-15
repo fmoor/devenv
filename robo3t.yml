@@ -14,18 +14,18 @@
     - name: install robo3t
       unarchive:
         src: https://download.robomongo.org/{{ robo3t_version }}/linux/{{ install_name }}.tar.gz
-        remote_src: true
+        remote_src: yes
         dest: /opt
-      become: true
+      become: yes
 
     - name: download robo3t icon
       get_url:
         url: https://robomongo.org/static/robomongo-128x128-129df2f1.png
         dest: /opt/{{ install_name }}/robo3t.png
-      become: true
+      become: yes
 
-    - name: register pycharm with gnome
+    - name: register robo3t with gnome
       template:
         src: robo3t.desktop
         dest: /usr/share/applications/robo3t.desktop
-      become: true
+      become: yes

@@ -10,12 +10,12 @@
     - name: install pycharm
       unarchive:
         src: https://download.jetbrains.com/python/pycharm-community-{{ pycharm_version }}.tar.gz
-        remote_src: true
+        remote_src: yes
         dest: /opt/
-      become: true
+      become: yes
 
     - name: register pycharm with gnome
       template:
         src: pycharm.desktop
         dest: /usr/share/applications/jetbrains-pycharm-ce.desktop
-      become: true
+      become: yes
