@@ -1,0 +1,57 @@
+---
+- name: install and configure neovim
+  hosts: localhost
+
+  tasks:
+    - name: install system dependencies
+      become: yes
+      apt:
+        cache_valid_time: 1200
+        state: latest
+        package:
+          - bat
+          - fd-find
+          - ripgrep
+
+          - g++
+          - libffi-dev
+          - libssl-dev
+          - python3-dev
+          - python3-pip
+          - python3-venv
+
+    # todo: checkout dot files
+    
+    - name: install deno
+      become: yes
+      ansible.builtin.unarchive:
+        remote_src: yes
+        src: https://github.com/denoland/deno/releases/latest/download/deno-x86_64-unknown-linux-gnu.zip
+        dest: /usr/local/bin/
+        mode: 0775
+
+    - name: create virtualenv
+      pip:
+        virtualenv_command: "python3 -m venv"
+        virtualenv: "{{ ansible_env.HOME }}/.neovim-venv"
+        name:
+          - python-language-server[all]
+          - pyls-mypy
+
+    - name: insall nighly neovim
+      become: yes
+      get_url:
+        url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+        dest: /usr/local/bin/nvim
+        mode: 0775
+
+    - name: link neovim config
+      file:
+        state: link
+        src: ~/src/dotfiles/nvim
+        path: ~/.config/nvim
+        force: yes
+
+    - name: install neovim pulgins
+      command: nvim +'PlugInstall --sycn' +qa
+
