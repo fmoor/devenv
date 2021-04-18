@@ -20,7 +20,13 @@
           - python3-pip
           - python3-venv
 
-    # todo: checkout dot files
+      # todo: checkout dot files
+
+    - name: install html languageserver
+      community.general.npm:
+        name: vscode-html-languageserver-bin
+        state: latest
+        global: yes
     
     - name: install deno
       become: yes
