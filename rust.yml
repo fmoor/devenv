@@ -1,0 +1,30 @@
+---
+- name: install rust 
+  hosts: localhost
+  tasks:
+    - name: rustup
+      block:
+      - name: download rustup installer
+        get_url:
+          url: https://sh.rustup.rs
+          dest: /tmp/install_rustup.sh
+          mode: 0775
+
+      - name: install rustup
+        become: yes
+        shell: /tmp/install_rustup.sh -y
+      always:
+      - name: remove rustup instasller
+        file:
+          path: /tmp/install_rustup.sh
+          state: absent
+
+    - name: add rust srource  # needed for rust-analizer
+      shell: rustup component add rust-src
+
+    - name: install rust-analyzer
+      become: yes
+      get_url:
+        url: https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux
+        dest: /usr/local/bin/rust-analyzer
+        mode: 0775
