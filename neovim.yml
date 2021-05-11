@@ -27,14 +27,18 @@
         name: vscode-html-languageserver-bin
         state: latest
         global: yes
-    
-    - name: install deno
-      become: yes
-      ansible.builtin.unarchive:
-        remote_src: yes
-        src: https://github.com/denoland/deno/releases/latest/download/deno-x86_64-unknown-linux-gnu.zip
-        dest: /usr/local/bin/
-        mode: 0775
+
+    - name: install typescript
+      community.general.npm:
+        name: typescript
+        state: latest
+        global: yes
+
+    - name: install typescript language server
+      community.general.npm:
+        name: typescript-language-server
+        state: latest
+        global: yes
 
     - name: create virtualenv
       pip:
