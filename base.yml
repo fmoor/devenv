@@ -4,12 +4,6 @@
   hosts: localhost
 
   tasks:
-    - name: add neovim repository
-      become: yes
-      apt_repository:
-        repo: ppa:neovim-ppa/stable
-        update_cache: false
-
     - name: add alacritty repository
       become: yes
       apt_repository:
@@ -43,7 +37,6 @@
           - fd-find
           - ripgrep
           - git
-          - neovim
           - jq
           - htop
           - curl

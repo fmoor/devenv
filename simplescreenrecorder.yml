@@ -3,11 +3,6 @@
 - hosts: localhost
 
   tasks:
-  - name: add simplescreenrecorder ppa
-    become: yes
-    apt_repository:
-      repo: "ppa:maarten-baert/simplescreenrecorder"
-
   - name: install simplescreenrecorder
     become: yes
     apt:

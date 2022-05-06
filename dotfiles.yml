@@ -10,14 +10,6 @@
           # aliased in bashrc
           - youtube-dl
 
-          - python-language-server[all]
-          - pyls-mypy
-
-          # used by vim plugin dense-analysis/ale
-          - yamllint
-          - flake8
-          - mypy
-
     - name: install svelte language server
       community.general.npm:
         name: svelte-language-server
@@ -60,23 +52,6 @@
         src: ~/src/dotfiles/tmux
         path: ~/.byobu/.tmux.conf
         force: yes
-
-    - name: link neovim config
-      file:
-        state: link
-        src: ~/src/dotfiles/nvim
-        path: ~/.config/nvim
-        force: yes
-
-    - name: link .vimrc
-      file:
-        state: link
-        src: ~/src/dotfiles/vimrc
-        path: ~/.vimrc
-        force: yes
-
-    - name: install neovim pulgins
-      command: nvim +'PlugInstall --sycn' +qa
 
     - name: link .gitconfig
       file:
