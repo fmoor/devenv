@@ -19,6 +19,8 @@ if [[ ! -f "$INSTALL_PATH/$NAME" ]]; then
 fi
 
 chmod +x "$INSTALL_PATH/$NAME"
+sudo adduser fmoor dialout
+sudo apt-get purge brltty
 
 if [[ ! -d "$SKETCH_DIR" ]]; then
     mkdir "$SKETCH_DIR"
