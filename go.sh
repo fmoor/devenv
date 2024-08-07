@@ -2,7 +2,7 @@
 
 set -ex
 
-version="go1.22.2"
+version="go1.22.6"
 current="$(go version | cut -d ' ' -f 3)"
 
 if [[ "$current" != "$version" ]]; then
