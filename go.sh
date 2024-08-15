@@ -2,7 +2,7 @@
 
 set -ex
 
-version="go1.22.6"
+version="go1.23.0"
 current="$(go version | cut -d ' ' -f 3)"
 
 if [[ "$current" != "$version" ]]; then
@@ -20,5 +20,5 @@ fi
 go install golang.org/x/tools/...@latest
 go install golang.org/x/tools/gopls@latest
 go install golang.org/x/exp/cmd/gorelease@latest
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 go install github.com/segmentio/golines@latest
